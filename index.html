@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROGHAR Healthcare - Global Regulatory Research & Market Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #1e88e5;
+            --accent-color: #ff6b35;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 84, 180, 0.85), rgba(0, 84, 180, 0.9)), url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Database Section */
+        .database-section {
+            background-color: #f8f9fa;
+        }
+
+        .database-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .database-text {
+            flex: 1;
+        }
+
+        .database-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .database-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .industry-item {
+            background-color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+        }
+
+        /* Why Choose Us Section */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3:after,
+        .footer-contact h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .database-content {
+                flex-direction: column;
+            }
+            
+            .database-text, .database-image {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>ROGHAR <span>Healthcare</span></h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Regulatory Services</a></li>
+                <li><a href="#research">Market Research</a></li>
+                <li><a href="#database">Mol Expert Database</a></li>
+                <li><a href="#why-us">Why Choose Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>GLOBAL REGULATORY RESEARCH PARTNER MARKET INTELLIGENCE</h1>
+            <p>Providing comprehensive regulatory affairs services, market intelligence, and strategic consulting for the pharmaceutical, chemical, and healthcare industries worldwide.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Regulatory Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Regulatory Services</h2>
+                <p>Comprehensive regulatory solutions to ensure compliance and accelerate market entry for your products</p>
+            </div>
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Dossier Preparation & Submission</h3>
+                    <ul>
+                        <li>CTD/ ACTD/ Country specific Dossier Compilation</li>
+                        <li>eCTD Publishing & Conversion</li>
+                        <li>Drug Master File (DMF) - Open & Closed Part</li>
+                        <li>Clinical & Non-clinical Documentation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Compliance & Licensing</h3>
+                    <ul>
+                        <li>GMP Audit Compliance & Gap Analysis</li>
+                        <li>CDSCO Services: COPP / FSC / Manufacturing / Import / Export Licenses</li>
+                        <li>Sugam & NSWs Portal Handling</li>
+                        <li>Medical Device & Cosmetic Registration</li>
+                        <li>FSSAI Registration & Renewal</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Manufacturing & Operations Support</h3>
+                    <ul>
+                        <li>Third Party Manufacturing Regulatory Support</li>
+                        <li>Technology Transfer Support</li>
+                        <li>Green Field Plant Setup Regulatory Support</li>
+                        <li>Technical Documentation (SOPs, Protocol, Validation)</li>
+                        <li>Bio-equivalence Study Management & Documentation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Pharmacovigilance & Safety</h3>
+                    <ul>
+                        <li>Pharmacovigilance Reports (ICSR, PSUR, PBRER)</li>
+                        <li>Safety Monitoring & Risk Management</li>
+                        <li>Regulatory Intelligence Updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Research Section -->
+    <section id="research" class="database-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Market Research & Competitive Intelligence</h2>
+                <p>Data-driven insights to help you make informed business decisions and gain competitive advantage</p>
+            </div>
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Strategic Analysis</h3>
+                    <ul>
+                        <li>Competitor Benchmarking</li>
+                        <li>Industry Landscape Analysis</li>
+                        <li>Market Trend Analysis</li>
+                        <li>Market Segmentation</li>
+                        <li>Positioning Matrix Analysis</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Strategy Development</h3>
+                    <ul>
+                        <li>Pricing Strategy Development</li>
+                        <li>Target Audience Identification</li>
+                        <li>Market Entry Strategy</li>
+                        <li>Consumer Insights</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Intelligence & Analytics</h3>
+                    <ul>
+                        <li>Patent Landscape Analysis</li>
+                        <li>Economic Indicator Analysis</li>
+                        <li>Data Analytics & Forecasting</li>
+                        <li>Competitive Intelligence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mol Expert Database Section -->
+    <section id="database">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mol Expert Database</h2>
+                <p>Comprehensive database covering multiple industries with verified buyer and supplier information</p>
+            </div>
+            <div class="database-content">
+                <div class="database-text">
+                    <h3>Industries Covered</h3>
+                    <div class="industry-list">
+                        <span class="industry-item">Pharmaceutical (APIs, Intermediates & FDF)</span>
+                        <span class="industry-item">Agro Chemical (Organic & Inorganic)</span>
+                        <span class="industry-item">Chemicals/Cosmetics</span>
+                        <span class="industry-item">Foods / Polymer Industry</span>
+                        <span class="industry-item">Dyes / Pigment</span>
+                        <span class="industry-item">Herbal & Ayurvedic Industries</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Mol Expert Offers</h3>
+                    <ul>
+                        <li><strong>Basic Product Information:</strong> Product Name, Brand Name, Market Status, Innovator & Developer</li>
+                        <li><strong>Technical Information:</strong> Route of Synthesis, MOA, CAS Number, Molecular Formula & Technology</li>
+                        <li><strong>Commercial Insights:</strong> Global Market Size (Volume/Value) & Average Price Trend</li>
+                        <li><strong>Verified Buyers & Suppliers:</strong> Contact Details and Company Information</li>
+                    </ul>
+                </div>
+                <div class="database-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Database Analytics">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="database-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose ROGHAR Healthcare</h2>
+                <p>Our commitment to accuracy, compliance, transparency, and long-term partnership ensures sustainable business growth for our clients</p>
+            </div>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Data Driven Consulting</h3>
+                    <p>Evidence-based strategies powered by comprehensive market intelligence and analytics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Multi-Industry Experience</h3>
+                    <p>Expertise across pharmaceutical, chemical, cosmetic, food, and herbal industries</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Confidentiality Assurance</h3>
+                    <p>Strict data protection protocols to safeguard your proprietary information</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Long-Term Partnership</h3>
+                    <p>Building sustainable relationships focused on your continuous growth and success</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Market Orientation</h3>
+                    <p>Understanding of international regulatory landscapes and market dynamics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Cost Effective Solutions</h3>
+                    <p>Optimized services delivering maximum value without compromising quality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Customized Client Strategy</h3>
+                    <p>Tailored solutions designed to meet your specific business objectives</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Compliance & Transparency</h3>
+                    <p>Adherence to highest regulatory standards with complete process visibility</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <h2>ROGHAR <span>Healthcare</span></h2>
+                    <p>Global Regulatory Research Partner & Market Intelligence</p>
+                    <p>Providing comprehensive regulatory and strategic consulting services to healthcare and chemical industries worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Regulatory Services</a></li>
+                        <li><a href="#research">Market Research</a></li>
+                        <li><a href="#database">Mol Expert Database</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-globe"></i> <strong>Website:</strong> www.roghar.com</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@roghar.com</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +91-XXX-XXXX-XXX</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Regulatory Affairs Consulting, India</p>
+                    <a href="mailto:info@roghar.com" class="btn" style="margin-top: 15px;">Contact Now</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ROGHAR Healthcare. All rights reserved. | Global Regulatory Research Partner & Market Intelligence</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
